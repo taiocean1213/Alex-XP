@@ -49,7 +49,7 @@ where
     }
 }
 
-fn main() {
+pub fn run() {
     let mut input = InputData {
         value: 3,
         numbers: vec![1.0, 2.0, 3.0],
@@ -57,6 +57,13 @@ fn main() {
     };
 
     let output: OutputData<i32> = process_data_recursive(&mut input);
+
+    assert_eq!(input.value, 13);
+    assert_eq!(input.numbers, vec![1.0, 2.0, 3.0, 13.0]);
+    assert_eq!(input.text, "hello_processed");
+    assert_eq!(output.processed_value, 26);
+    assert_eq!(output.processed_numbers, vec![1.5, 3.0, 4.5, 19.5]);
+    assert_eq!(output.result, 6);
 
     println!(
         "Input after recursion: value={}, numbers={:?}, text={}",
@@ -66,4 +73,9 @@ fn main() {
         "Output: value={}, numbers={:?}, result={:?}",
         output.processed_value, output.processed_numbers, output.result
     );
+}
+
+#[allow(dead_code)]
+fn main() {
+    run();
 }

@@ -89,7 +89,7 @@ macro_rules! obj {
         obj_items!($name { } { } $($body)*);
     };
     ($($other:tt)*) => {
-        compile_error!("obj! Name { field: Type, fn method(...) { ... } }");
+        ::core::compile_error!("obj! Name { field: Type, fn method(...) { ... } }");
     };
 }
 
@@ -120,7 +120,9 @@ macro_rules! obj_items {
         impl $struct { $($methods)* }
     };
     ($($other:tt)*) => {
-        compile_error!("obj! fields are `name: Type,` (comma required), then `fn name(...) { ... }`");
+        ::core::compile_error!(
+            "obj! fields are `name: Type,` (comma required), then `fn name(...) { ... }`"
+        );
     };
 }
 
@@ -135,6 +137,6 @@ macro_rules! iface {
         interface!($name { $($body)* });
     };
     ($($other:tt)*) => {
-        compile_error!("iface!(Name { ... }) or iface!(Child: Parent { ... })");
+        ::core::compile_error!("iface!(Name { ... }) or iface!(Child: Parent { ... })");
     };
 }

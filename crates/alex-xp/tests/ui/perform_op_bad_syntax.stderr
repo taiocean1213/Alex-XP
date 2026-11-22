@@ -1,0 +1,7 @@
+error: Invalid syntax for perform_op!. Expected: name = expr1 + expr2 (or -, *, /)
+ --> tests/ui/perform_op_bad_syntax.rs:4:5
+  |
+4 |     perform_op!(1 + 1);
+  |     ^^^^^^^^^^^^^^^^^^
+  |
+  = note: this error originates in the macro `perform_op` (in Nightly builds, run with -Z macro-backtrace for more info)

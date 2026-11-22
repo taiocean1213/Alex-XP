@@ -1,0 +1,14 @@
+error[E0382]: use of moved value: `token`
+ --> tests/ui/give_use_after_move.rs:6:18
+  |
+4 |     let token = String::from("a");
+  |         ----- move occurs because `token` has type `String`, which does not implement the `Copy` trait
+5 |     give!(moved = token);
+  |                   ----- value moved here
+6 |     let _again = token;
+  |                  ^^^^^ value used here after move
+  |
+help: consider cloning the value if the performance cost is acceptable
+  |
+5 |     give!(moved = token.clone());
+  |                        ++++++++

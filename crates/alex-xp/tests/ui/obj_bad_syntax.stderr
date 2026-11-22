@@ -1,0 +1,7 @@
+error: obj! Name { field: Type, fn method(...) { ... } }
+ --> tests/ui/obj_bad_syntax.rs:3:1
+  |
+3 | obj!(NotAnObj);
+  | ^^^^^^^^^^^^^^
+  |
+  = note: this error originates in the macro `obj` (in Nightly builds, run with -Z macro-backtrace for more info)

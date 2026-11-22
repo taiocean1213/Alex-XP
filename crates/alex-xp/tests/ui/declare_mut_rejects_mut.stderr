@@ -1,0 +1,7 @@
+error: declare_mut_var! with no_mut_ptr does not allow unique writable lends. Use unique_writable_lend! or declare_mut_var!(name = &mut expr, mut_ptr).
+ --> tests/ui/declare_mut_rejects_mut.rs:5:5
+  |
+5 |     declare_mut_var!(p = &mut x, no_mut_ptr);
+  |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  |
+  = note: this error originates in the macro `declare_mut_var` (in Nightly builds, run with -Z macro-backtrace for more info)

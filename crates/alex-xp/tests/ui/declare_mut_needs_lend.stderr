@@ -1,0 +1,7 @@
+error: declare_mut_var! with mut_ptr requires a unique writable lend. Expected: name = &mut expr, mut_ptr
+ --> tests/ui/declare_mut_needs_lend.rs:4:5
+  |
+4 |     declare_mut_var!(p, mut_ptr);
+  |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  |
+  = note: this error originates in the macro `declare_mut_var` (in Nightly builds, run with -Z macro-backtrace for more info)

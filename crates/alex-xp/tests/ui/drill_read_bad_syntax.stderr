@@ -1,0 +1,7 @@
+error: Invalid syntax for drill_read!. Expected: start_expr, Enum::PrevVariant, field_name
+ --> tests/ui/drill_read_bad_syntax.rs:4:13
+  |
+4 |     let _ = drill_read!(1);
+  |             ^^^^^^^^^^^^^^
+  |
+  = note: this error originates in the macro `drill_read` (in Nightly builds, run with -Z macro-backtrace for more info)

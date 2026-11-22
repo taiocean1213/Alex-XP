@@ -1,0 +1,7 @@
+error: add!(name, amount)
+ --> tests/ui/add_bad_syntax.rs:4:5
+  |
+4 |     add!(1);
+  |     ^^^^^^^
+  |
+  = note: this error originates in the macro `add` (in Nightly builds, run with -Z macro-backtrace for more info)

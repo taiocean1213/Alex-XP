@@ -1,0 +1,20 @@
+error[E0277]: the trait bound `Token: Clone` is not satisfied
+ --> tests/ui/val_needs_clone.rs:7:5
+  |
+7 |     val!(copied = token);
+  |     ^^^^^^^^^^^^^^^^^^^^
+  |     |
+  |     the trait `Clone` is not implemented for `Token`
+  |     required by a bound introduced by this call
+  |
+note: required by a bound in `alex_xp::auto_dup`
+ --> src/auto.rs
+  |
+  | pub fn auto_dup<T: Clone>(value: &T) -> T {
+  |                    ^^^^^ required by this bound in `auto_dup`
+  = note: this error originates in the macro `$crate::auto_let` which comes from the expansion of the macro `val` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider annotating `Token` with `#[derive(Clone)]`
+  |
+3 + #[derive(Clone)]
+4 | struct Token(i32);
+  |

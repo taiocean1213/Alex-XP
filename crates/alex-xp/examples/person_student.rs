@@ -53,16 +53,26 @@ class! {
     }
 }
 
-fn main() {
+pub fn run() {
     let person = ConcretePerson::new(String::from("Alice"));
     let student = ConcreteStudent::new(String::from("Bob"), String::from("MIT"));
 
+    assert_eq!(person.name(), "Alice");
+    assert_eq!(student.name(), "Bob");
+    assert_eq!(student.university(), "MIT");
     println!("Person name: {}", person.name());
     println!("Student name: {}", student.name());
     println!("Student university: {}", student.university());
 
     let people: Vec<&dyn Person> = vec![&person, &student];
+    let names: Vec<String> = people.iter().map(|p| p.name()).collect();
+    assert_eq!(names, ["Alice", "Bob"]);
     for p in people {
         println!("Polymorphic name: {}", p.name());
     }
+}
+
+#[allow(dead_code)]
+fn main() {
+    run();
 }

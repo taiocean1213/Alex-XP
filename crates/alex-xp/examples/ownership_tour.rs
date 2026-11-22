@@ -2,13 +2,17 @@
 
 use alex_xp::*;
 
-fn main() {
+pub fn run() {
     declare_const!(ANSWER : i32 = 42);
     declare_mut_var!(count : i32 = 1, no_mut_ptr);
     declare_immut_var!(label : &str = "n", no_mut_ptr);
 
     copy_assign!(snapshot = count);
     perform_op!(count = count + snapshot);
+    assert_eq!(count, 2);
+    assert_eq!(snapshot, 1);
+    assert_eq!(ANSWER, 42);
+    assert_eq!(label, "n");
     print_value!(count);
     print_value!(ANSWER);
     print_value!(label);
@@ -20,11 +24,13 @@ fn main() {
     }
 
     read_only_lend!(view = count);
+    assert_eq!(deref_access!(view), 10);
     print_value!(deref_access!(view));
 
     declare_mut_var!(owned : String = String::from("hello"), no_mut_ptr);
     print_value!(owned);
     reassign_ownership!(owned = String::from("world"));
+    assert_eq!(owned, "world");
     print_value!(owned);
     delete_var!(owned);
 
@@ -32,12 +38,20 @@ fn main() {
     unique_writable_lend!(p = x);
     declare_immut_var!(q = p, mut_ptr);
     deref_mutate!(q = 7);
+    assert_eq!(x, 7);
     print_value!(x);
+
+    _uninitialized_then_assign();
+}
+
+#[allow(dead_code)]
+fn main() {
+    run();
 }
 
 fn _uninitialized_then_assign() {
     declare_mut_var!(later : i32, no_mut_ptr);
     reassign_ownership!(later = 1);
     reassign_copy!(later = 2);
-    let _ = later;
+    assert_eq!(later, 2);
 }

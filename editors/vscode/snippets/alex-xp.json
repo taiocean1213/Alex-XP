@@ -76,6 +76,11 @@
     "body": ["declare_mut_var!(${1:name} : ${2:Type} = ${3:expr}, no_mut_ptr);"],
     "description": "Mutable owned binding (Alex-XP)"
   },
+  "declare_var": {
+    "prefix": "declare_var",
+    "body": ["declare_var!(${1:name} : ${2:Type} = ${3:expr});"],
+    "description": "Binding with an explicit type (Alex-XP)"
+  },
   "declare_const": {
     "prefix": "declare_const",
     "body": ["declare_const!(${1:NAME} : ${2:Type} = ${3:expr});"],

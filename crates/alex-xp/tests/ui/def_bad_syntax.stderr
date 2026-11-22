@@ -1,0 +1,7 @@
+error: def!(name = |arg| expr)
+ --> tests/ui/def_bad_syntax.rs:4:5
+  |
+4 |     def!(|n| n);
+  |     ^^^^^^^^^^^
+  |
+  = note: this error originates in the macro `def` (in Nightly builds, run with -Z macro-backtrace for more info)

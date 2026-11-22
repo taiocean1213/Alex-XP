@@ -1,0 +1,7 @@
+error: Invalid syntax for auto_own!. Expected: name = lend
+ --> tests/ui/auto_own_bad_syntax.rs:4:5
+  |
+4 |     auto_own!(1);
+  |     ^^^^^^^^^^^^
+  |
+  = note: this error originates in the macro `auto_own` (in Nightly builds, run with -Z macro-backtrace for more info)

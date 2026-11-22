@@ -64,17 +64,24 @@ fn get_lowest_value(deepest: &Option<Node>) -> Option<i32> {
     })
 }
 
-fn main() {
+pub fn run() {
     let max_depth = 5;
     let mut deepest = recurse(max_depth, 1, None);
 
+    assert_eq!(get_lowest_value(&deepest), Some(16));
     if let Some(value) = get_lowest_value(&deepest) {
         println!("Initial lowest child's value: {value}");
     }
 
     modify_lowest_value(&mut deepest, 100);
 
+    assert_eq!(get_lowest_value(&deepest), Some(100));
     if let Some(value) = get_lowest_value(&deepest) {
         println!("Updated lowest child's value: {value}");
     }
+}
+
+#[allow(dead_code)]
+fn main() {
+    run();
 }
