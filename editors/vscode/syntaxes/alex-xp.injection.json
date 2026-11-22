@@ -1,0 +1,46 @@
+{
+  "scopeName": "alex-xp.injection.rust",
+  "injectionSelector": "L:source.rust -comment -string",
+  "patterns": [
+    {
+      "name": "meta.macro.alex-xp.interface.rust",
+      "begin": "\\b(interface)(!)\\s*(\\{)",
+      "beginCaptures": {
+        "1": { "name": "keyword.control.alex-xp.rust" },
+        "2": { "name": "keyword.operator.macro.alex-xp.rust" },
+        "3": { "name": "punctuation.section.block.begin.alex-xp.rust" }
+      },
+      "end": "\\}",
+      "endCaptures": {
+        "0": { "name": "punctuation.section.block.end.alex-xp.rust" }
+      },
+      "patterns": [
+        { "include": "source.rust" }
+      ]
+    },
+    {
+      "name": "meta.macro.alex-xp.class.rust",
+      "begin": "\\b(class)(!)\\s*(\\{)",
+      "beginCaptures": {
+        "1": { "name": "keyword.control.alex-xp.rust" },
+        "2": { "name": "keyword.operator.macro.alex-xp.rust" },
+        "3": { "name": "punctuation.section.block.begin.alex-xp.rust" }
+      },
+      "end": "\\}",
+      "endCaptures": {
+        "0": { "name": "punctuation.section.block.end.alex-xp.rust" }
+      },
+      "patterns": [
+        { "include": "source.rust" }
+      ]
+    },
+    {
+      "name": "keyword.control.alex-xp.rust",
+      "match": "\\b(interface|class|declare_immut_var|declare_mut_var|declare_const|declare_var|ownership_assign|copy_assign|unique_writable_lend|read_only_lend|deref_access|deref_mutate|scope_block|reassign_ownership|reassign_copy|delete_var|perform_op|print_value|drill_mut|drill_read|auto_let|auto_let_mut|auto_give|auto_set|auto_share|auto_edit|auto_own|auto_box|auto_fn)!"
+    },
+    {
+      "name": "storage.modifier.alex-xp.rust",
+      "match": "\\b(no_mut_ptr|mut_ptr)\\b"
+    }
+  ]
+}

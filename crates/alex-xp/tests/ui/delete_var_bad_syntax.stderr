@@ -1,0 +1,7 @@
+error: Invalid syntax for delete_var!. Expected: name
+ --> tests/ui/delete_var_bad_syntax.rs:4:5
+  |
+4 |     delete_var!(1 + 1);
+  |     ^^^^^^^^^^^^^^^^^^
+  |
+  = note: this error originates in the macro `delete_var` (in Nightly builds, run with -Z macro-backtrace for more info)

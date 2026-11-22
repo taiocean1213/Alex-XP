@@ -1,0 +1,7 @@
+error: declare_immut_var! with no_mut_ptr does not allow unique writable lends. Use read_only_lend! / `&expr`, or declare_immut_var!(name = &mut expr, mut_ptr).
+ --> tests/ui/declare_immut_rejects_mut.rs:5:5
+  |
+5 |     declare_immut_var!(p = &mut x, no_mut_ptr);
+  |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  |
+  = note: this error originates in the macro `declare_immut_var` (in Nightly builds, run with -Z macro-backtrace for more info)

@@ -1,0 +1,7 @@
+error: read_only_lend! does not allow unique writable lends. Use unique_writable_lend! instead. The macro inserts &.
+ --> tests/ui/read_only_lend_rejects_mut.rs:5:5
+  |
+5 |     read_only_lend!(p = &mut x);
+  |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  |
+  = note: this error originates in the macro `read_only_lend` (in Nightly builds, run with -Z macro-backtrace for more info)

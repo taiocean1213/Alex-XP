@@ -1,0 +1,10 @@
+[package]
+name = "alex-xp"
+version = "0.1.0"
+edition = "2021"
+description = "OOP-flavored ownership macros over ordinary Rust"
+license = "MIT OR Apache-2.0"
+readme = "../../README.md"
+
+[dev-dependencies]
+trybuild = "1"

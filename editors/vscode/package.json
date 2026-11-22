@@ -1,0 +1,29 @@
+{
+  "name": "alex-xp",
+  "displayName": "Alex-XP",
+  "description": "Highlighting and snippets for Alex-XP ownership and OOP macros in Rust.",
+  "version": "0.1.0",
+  "publisher": "alex-xp",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Programming Languages",
+    "Snippets"
+  ],
+  "contributes": {
+    "grammars": [
+      {
+        "scopeName": "alex-xp.injection.rust",
+        "path": "./syntaxes/alex-xp.injection.json",
+        "injectTo": ["source.rust"]
+      }
+    ],
+    "snippets": [
+      {
+        "language": "rust",
+        "path": "./snippets/alex-xp.json"
+      }
+    ]
+  }
+}

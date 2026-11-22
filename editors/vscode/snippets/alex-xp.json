@@ -1,0 +1,173 @@
+{
+  "declare_immut_var": {
+    "prefix": "declare_immut_var",
+    "body": ["declare_immut_var!(${1:name} : ${2:Type} = ${3:expr}, no_mut_ptr);"],
+    "description": "Immutable owned binding (Alex-XP)"
+  },
+  "declare_mut_var": {
+    "prefix": "declare_mut_var",
+    "body": ["declare_mut_var!(${1:name} : ${2:Type} = ${3:expr}, no_mut_ptr);"],
+    "description": "Mutable owned binding (Alex-XP)"
+  },
+  "declare_const": {
+    "prefix": "declare_const",
+    "body": ["declare_const!(${1:NAME} : ${2:Type} = ${3:expr});"],
+    "description": "Compile-time constant (Alex-XP)"
+  },
+  "ownership_assign": {
+    "prefix": "ownership_assign",
+    "body": ["ownership_assign!(${1:name} = ${2:expr});"],
+    "description": "Move into a new binding (Alex-XP)"
+  },
+  "copy_assign": {
+    "prefix": "copy_assign",
+    "body": ["copy_assign!(${1:name} = ${2:expr});"],
+    "description": "Copy a Copy value (Alex-XP)"
+  },
+  "unique_writable_lend": {
+    "prefix": "unique_writable_lend",
+    "body": ["unique_writable_lend!(${1:name} = ${2:place});"],
+    "description": "Unique writable lend; inserts &mut (Alex-XP)"
+  },
+  "read_only_lend": {
+    "prefix": "read_only_lend",
+    "body": ["read_only_lend!(${1:name} = ${2:place});"],
+    "description": "Read-only lend; inserts & (Alex-XP)"
+  },
+  "deref_access": {
+    "prefix": "deref_access",
+    "body": ["deref_access!(${1:lent})"],
+    "description": "Read through a lend (Alex-XP)"
+  },
+  "deref_mutate": {
+    "prefix": "deref_mutate",
+    "body": ["deref_mutate!(${1:lent} = ${2:expr});"],
+    "description": "Write through a unique lend (Alex-XP)"
+  },
+  "scope_block": {
+    "prefix": "scope_block",
+    "body": ["scope_block! {", "    $0", "}"],
+    "description": "End lends at the closing brace (Alex-XP)"
+  },
+  "reassign_ownership": {
+    "prefix": "reassign_ownership",
+    "body": ["reassign_ownership!(${1:name} = ${2:expr});"],
+    "description": "Move into an existing mutable binding (Alex-XP)"
+  },
+  "reassign_copy": {
+    "prefix": "reassign_copy",
+    "body": ["reassign_copy!(${1:name} = ${2:expr});"],
+    "description": "Copy into an existing mutable binding (Alex-XP)"
+  },
+  "delete_var": {
+    "prefix": "delete_var",
+    "body": ["delete_var!(${1:name});"],
+    "description": "Drop a binding early (Alex-XP)"
+  },
+  "perform_op": {
+    "prefix": "perform_op",
+    "body": ["perform_op!(${1:name} = ${2:a} ${3:+} ${4:b});"],
+    "description": "Arithmetic assign (Alex-XP)"
+  },
+  "print_value": {
+    "prefix": "print_value",
+    "body": ["print_value!(${1:expr});"],
+    "description": "Print a value (Alex-XP)"
+  },
+  "interface": {
+    "prefix": "interface",
+    "body": [
+      "interface! {",
+      "    ${1:Name} {",
+      "        fn ${2:method}(&self)${3: -> ${4:Type}};",
+      "    }",
+      "}"
+    ],
+    "description": "Interface (trait) (Alex-XP)"
+  },
+  "interface_parent": {
+    "prefix": "interface_parent",
+    "body": [
+      "interface! {",
+      "    ${1:Child}, ${2:Parent} {",
+      "        fn ${3:method}(&self)${4: -> ${5:Type}};",
+      "    }",
+      "}"
+    ],
+    "description": "Child interface with parent (Alex-XP)"
+  },
+  "class": {
+    "prefix": "class",
+    "body": [
+      "class! {",
+      "    ${1:Name} : [${2:Trait} {",
+      "        fn ${3:method}(&self) ${4:-> ${5:Type} }{",
+      "            $0",
+      "        }",
+      "    }] {",
+      "        ${6:field}: ${7:Type},",
+      "    } {",
+      "        fn new(${6:field}: ${7:Type}) -> Self {",
+      "            Self { ${6:field} }",
+      "        }",
+      "    }",
+      "}"
+    ],
+    "description": "Class implementing interfaces (Alex-XP)"
+  },
+  "drill_mut": {
+    "prefix": "drill_mut",
+    "body": ["drill_mut!(${1:&mut node.data}, ${2:NodeData}::${3:Prev}, ${4:data})"],
+    "description": "Walk Prev boxes mutably to the leaf (Alex-XP)"
+  },
+  "drill_read": {
+    "prefix": "drill_read",
+    "body": ["drill_read!(${1:&node.data}, ${2:NodeData}::${3:Prev}, ${4:data})"],
+    "description": "Walk Prev boxes shared to the leaf (Alex-XP)"
+  },
+  "auto_let": {
+    "prefix": "auto_let",
+    "body": ["auto_let!(${1:name} = ${2:expr});"],
+    "description": "Inferred binding; duplicates so the source stays (Alex-XP)"
+  },
+  "auto_let_mut": {
+    "prefix": "auto_let_mut",
+    "body": ["auto_let_mut!(${1:name} = ${2:expr});"],
+    "description": "Inferred mutable binding; duplicates (Alex-XP)"
+  },
+  "auto_give": {
+    "prefix": "auto_give",
+    "body": ["auto_give!(${1:name} = ${2:expr});"],
+    "description": "Inferred binding that takes ownership (Alex-XP)"
+  },
+  "auto_set": {
+    "prefix": "auto_set",
+    "body": ["auto_set!(${1:name} = ${2:expr});"],
+    "description": "Replace a mutable binding with a duplicate (Alex-XP)"
+  },
+  "auto_share": {
+    "prefix": "auto_share",
+    "body": ["auto_share!(${1:name} = ${2:expr});"],
+    "description": "Shared lend, no & and no lifetime (Alex-XP)"
+  },
+  "auto_edit": {
+    "prefix": "auto_edit",
+    "body": ["auto_edit!(${1:slot} = ${2:place} {", "    $0", "});"],
+    "description": "Mutable lend that ends with the block (Alex-XP)"
+  },
+  "auto_own": {
+    "prefix": "auto_own",
+    "body": ["auto_own!(${1:name} = ${2:lend});"],
+    "description": "Turn a lend into owned data (Alex-XP)"
+  },
+  "auto_box": {
+    "prefix": "auto_box",
+    "body": ["auto_box!(${1:name} = ${2:expr});"],
+    "description": "Own on the heap without a lifetime (Alex-XP)"
+  },
+  "auto_fn": {
+    "prefix": "auto_fn",
+    "body": ["auto_fn!(${1:name} = |${2:arg}| ${3:arg});"],
+    "description": "Local function with inferred types (Alex-XP)"
+  }
+}
