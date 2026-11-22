@@ -132,7 +132,3 @@ cargo test -p alex-xp
 ## Editor
 
 Unpacked extension: [editors/vscode](editors/vscode). See [editors/vscode/README.md](editors/vscode/README.md) for Cursor install. Highlighting injects into `source.rust`; diagnostics are rust-analyzer plus macro `compile_error!`.
-
-## Historical sketches
-
-The folders `class-automation-macros/`, `lifetime-automation-macros/`, and `mut-reference-drilling/` are the original standalone `rustc` sketches. The product surface is `crates/alex-xp`.
