@@ -1,7 +1,4 @@
-//! New-project path: inferred locals, duplicate-by-default, no lifetime names.
-//!
-//! Depend on upstream:
-//! `alex-xp = { git = "https://github.com/taiocean1213/Alex-XP" }`
+//! The short path: one name per idea, the value written once.
 
 use alex_xp::*;
 
@@ -10,33 +7,38 @@ struct Node {
     next: Option<Box<Node>>,
 }
 
+obj!(Greeter {
+    who: String,
+    fn new(who: String) -> Self {
+        Self { who }
+    }
+    fn hello(&self) -> String {
+        s!(self.who)
+    }
+});
+
 fn main() {
-    auto_let!(label = String::from("Ada"));
-    auto_let!(again = label);
-    print_value!(label);
-    print_value!(again);
+    val!(label = s!("Ada"));
+    val!(again = label);
+    show!(label);
+    show!(again);
 
-    auto_let_mut!(count = 1);
-    auto_edit!(slot = count {
-        deref_mutate!(slot = deref_access!(slot) + 1);
-    });
-    print_value!(count);
+    var!(count = 1);
+    add!(count, 1);
+    show!(count);
 
-    auto_share!(view = label);
-    auto_own!(kept = view);
-    print_value!(kept);
+    def!(double = |n| n * 2);
+    show!(double(count));
 
-    auto_fn!(double = |n| n * 2);
-    print_value!(double(count));
+    val!(person = Greeter::new(s!("Ada")));
+    show!(person.hello());
 
-    auto_box!(boxed = Node { value: 1, next: None });
-    auto_give!(root = Node {
+    give!(root = Node {
         value: 0,
-        next: Some(boxed),
+        next: Some(heap!(Node { value: 1, next: None })),
     });
-    print_value!(root.next.as_ref().unwrap().value);
+    show!(root.next.as_ref().unwrap().value);
 
-    auto_let!(farewell = String::from("bye"));
-    auto_give!(handed = farewell);
-    print_value!(handed);
+    give!(handed = s!("bye"));
+    show!(handed);
 }

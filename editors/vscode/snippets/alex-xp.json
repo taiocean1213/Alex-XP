@@ -1,4 +1,71 @@
 {
+  "val": {
+    "prefix": "val",
+    "body": ["val!(${1:name} = ${2:expr});"],
+    "description": "Immutable binding, type inferred (Alex-XP)"
+  },
+  "var": {
+    "prefix": "var",
+    "body": ["var!(${1:name} = ${2:expr});"],
+    "description": "Mutable binding, type inferred (Alex-XP)"
+  },
+  "add": {
+    "prefix": "add",
+    "body": ["add!(${1:name}, ${2:1});"],
+    "description": "Add to a mutable binding; name written once (Alex-XP)"
+  },
+  "set": {
+    "prefix": "set",
+    "body": ["set!(${1:name} = ${2:expr});"],
+    "description": "Replace a mutable binding (Alex-XP)"
+  },
+  "give": {
+    "prefix": "give",
+    "body": ["give!(${1:name} = ${2:expr});"],
+    "description": "Take ownership of a value (Alex-XP)"
+  },
+  "s": {
+    "prefix": "s!",
+    "body": ["s!(\"${1:text}\")"],
+    "description": "A String (Alex-XP)"
+  },
+  "show": {
+    "prefix": "show",
+    "body": ["show!(${1:expr});"],
+    "description": "Print (Alex-XP)"
+  },
+  "def": {
+    "prefix": "def",
+    "body": ["def!(${1:name} = |${2:arg}| ${3:arg});"],
+    "description": "Function with inferred types (Alex-XP)"
+  },
+  "heap": {
+    "prefix": "heap",
+    "body": ["heap!(${1:expr})"],
+    "description": "Box a value (Alex-XP)"
+  },
+  "obj": {
+    "prefix": "obj",
+    "body": [
+      "obj!(${1:Name} {",
+      "    ${2:field}: ${3:String},",
+      "    fn new(${2:field}: ${3:String}) -> Self { Self { ${2:field} } }",
+      "    fn ${4:hello}(&self) -> ${3:String} {",
+      "        $0",
+      "    }",
+      "});"
+    ],
+    "description": "Class written once (Alex-XP)"
+  },
+  "iface": {
+    "prefix": "iface",
+    "body": [
+      "iface!(${1:Name} {",
+      "    fn ${2:method}(&self) -> ${3:String};",
+      "});"
+    ],
+    "description": "Trait (Alex-XP)"
+  },
   "declare_immut_var": {
     "prefix": "declare_immut_var",
     "body": ["declare_immut_var!(${1:name} : ${2:Type} = ${3:expr}, no_mut_ptr);"],

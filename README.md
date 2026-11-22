@@ -26,24 +26,24 @@ That git dependency resolves once this library is on the default branch of that 
 alex-xp = { path = "C:/Users/ASUS/Downloads/Alex-XP/crates/alex-xp" }
 ```
 
-Write `src/main.rs` with the automatic vocabulary (no local types, no `&`, no `'a`):
+Write `src/main.rs`:
 
 ```rust
 use alex_xp::*;
 
+obj!(Greeter {
+    who: String,
+    fn new(who: String) -> Self { Self { who } }
+    fn hello(&self) -> String { s!(self.who) }
+});
+
 fn main() {
-    auto_let!(label = String::from("Ada"));
-    auto_let!(again = label);
-    print_value!(label);
+    val!(person = Greeter::new(s!("Ada")));
+    show!(person.hello());
 
-    auto_let_mut!(count = 1);
-    auto_edit!(slot = count {
-        deref_mutate!(slot = deref_access!(slot) + 1);
-    });
-
-    auto_share!(view = label);
-    auto_own!(kept = view);
-    print_value!(kept);
+    var!(count = 1);
+    add!(count, 1);
+    show!(count);
 }
 ```
 
@@ -51,9 +51,21 @@ fn main() {
 cargo run
 ```
 
-`auto_let!` duplicates (`Clone`, which copies `Copy` types) so the source stays usable. `auto_give!` is the explicit hand-off when a value cannot be duplicated (files, locks). `auto_share!` lends without writing `&`. `auto_edit!` lends uniquely and ends that lend at the closing brace. `auto_own!` turns `&str` / `&[T]` into `String` / `Vec<T>` so the result has no lifetime. `auto_box!` stores a value in `Box` for recursive structures. `auto_fn!` is a local closure with inferred argument and return types.
+| You type | It does |
+| --- | --- |
+| `val!(name = expr)` | Immutable binding, type inferred, source stays |
+| `var!(name = expr)` | Same, but mutable |
+| `add!(name, n)` | `name = name + n` — the name is written once |
+| `set!(name = expr)` | Replace it, source stays |
+| `give!(name = expr)` | Take it (files, locks, anything not `Clone`) |
+| `s!("Ada")` | A `String` |
+| `show!(expr)` | Print |
+| `def!(name = \|arg\| expr)` | Function, types inferred |
+| `heap!(expr)` | `Box`, for a link in a tree |
+| `obj!(Name { field: Type, fn ... });` | Struct and methods, written once, `Clone` |
+| `iface!(Name { ... });` | A trait, only when you need `dyn` |
 
-Class fields and `&self` / `&mut self` stay written out. A struct cannot infer them. Prefer owned field types (`String`, `Vec<T>`, `i32`) so the class has no lifetime parameter.
+`val!` duplicates (`Clone`). Prefer owned fields (`String`, `i32`) so a class has no lifetime. The longer names (`auto_let!`, `class!`, `declare_*!`) are the same ideas spelled out.
 
 ## Explicit vocabulary
 
@@ -87,14 +99,7 @@ class! {
 
 | You write | Meaning |
 | --- | --- |
-| `auto_let!` / `auto_let_mut!` | Infer the type and duplicate (`Clone`) |
-| `auto_set!` | Duplicate into an existing mutable binding |
-| `auto_give!` | Infer the type and take ownership |
-| `auto_share!` | Lend without writing `&` or a lifetime |
-| `auto_edit!` | Unique lend that ends with the block |
-| `auto_own!` | Lend → owned (`&str` becomes `String`) |
-| `auto_box!` | Heap link without a lifetime |
-| `auto_fn!` | Closure with inferred argument and return types |
+| `val!` / `var!` / `set!` / `give!` / `add!` | Short bindings (see above) |
 | `declare_immut_var!` / `declare_mut_var!` | Bind, with `no_mut_ptr` or `mut_ptr` |
 | `declare_const!` | `const` |
 | `ownership_assign!` / `reassign_ownership!` | Move |

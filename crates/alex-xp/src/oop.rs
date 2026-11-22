@@ -73,3 +73,68 @@ macro_rules! class {
         );
     };
 }
+
+/// One class, written once. Fields are `name: Type,`. Methods follow.
+///
+/// ```ignore
+/// obj!(Greeter {
+///     who: String,
+///     fn new(who: String) -> Self { Self { who } }
+///     fn hello(&self) -> String { self.who.clone() }
+/// })
+/// ```
+#[macro_export(local_inner_macros)]
+macro_rules! obj {
+    ($name:ident { $($body:tt)* }) => {
+        obj_items!($name { } { } $($body)*);
+    };
+    ($($other:tt)*) => {
+        compile_error!("obj! Name { field: Type, fn method(...) { ... } }");
+    };
+}
+
+#[doc(hidden)]
+#[macro_export(local_inner_macros)]
+macro_rules! obj_items {
+    ($struct:ident { $($fields:tt)* } { $($methods:tt)* } fn $mname:ident ($($args:tt)*) -> $ret:ty $body:block $($rest:tt)*) => {
+        obj_items!(
+            $struct { $($fields)* } { $($methods)* pub fn $mname($($args)*) -> $ret $body }
+            $($rest)*
+        );
+    };
+    ($struct:ident { $($fields:tt)* } { $($methods:tt)* } fn $mname:ident ($($args:tt)*) $body:block $($rest:tt)*) => {
+        obj_items!(
+            $struct { $($fields)* } { $($methods)* pub fn $mname($($args)*) $body }
+            $($rest)*
+        );
+    };
+    ($struct:ident { $($fields:tt)* } { $($methods:tt)* } $fname:ident : $fty:ty, $($rest:tt)*) => {
+        obj_items!(
+            $struct { $($fields)* pub $fname: $fty, } { $($methods)* }
+            $($rest)*
+        );
+    };
+    ($struct:ident { $($fields:tt)* } { $($methods:tt)* }) => {
+        #[derive(Clone)]
+        pub struct $struct { $($fields)* }
+        impl $struct { $($methods)* }
+    };
+    ($($other:tt)*) => {
+        compile_error!("obj! fields are `name: Type,` (comma required), then `fn name(...) { ... }`");
+    };
+}
+
+/// `iface!(Named { fn name(&self) -> String; })`
+/// `iface!(Student: Person { fn university(&self) -> String; })`
+#[macro_export(local_inner_macros)]
+macro_rules! iface {
+    ($name:ident : $parent:ident { $($body:tt)* }) => {
+        interface!($name, $parent { $($body)* });
+    };
+    ($name:ident { $($body:tt)* }) => {
+        interface!($name { $($body)* });
+    };
+    ($($other:tt)*) => {
+        compile_error!("iface!(Name { ... }) or iface!(Child: Parent { ... })");
+    };
+}

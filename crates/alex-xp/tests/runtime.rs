@@ -1,6 +1,38 @@
 use alex_xp::*;
 
 #[test]
+fn short_names_and_obj() {
+    val!(label = s!("Ada"));
+    val!(again = label);
+    assert_eq!(label, "Ada");
+    assert_eq!(again, "Ada");
+
+    var!(count = 1);
+    add!(count, 1);
+    assert_eq!(count, 2);
+    set!(count = 5);
+    assert_eq!(count, 5);
+
+    def!(double = |n| n * 2);
+    assert_eq!(double(count), 10);
+
+    give!(handed = s!("bye"));
+    assert_eq!(handed, "bye");
+
+    obj!(Greeter {
+        who: String,
+        fn new(who: String) -> Self {
+            Self { who }
+        }
+        fn hello(&self) -> String {
+            s!(self.who)
+        }
+    });
+    val!(person = Greeter::new(s!("Ada")));
+    assert_eq!(person.hello(), "Ada");
+}
+
+#[test]
 fn auto_duplicates_infers_and_owns() {
     auto_let!(label = String::from("Ada"));
     auto_let!(again = label);

@@ -4,7 +4,7 @@
   "patterns": [
     {
       "name": "meta.macro.alex-xp.interface.rust",
-      "begin": "\\b(interface)(!)\\s*(\\{)",
+      "begin": "\\b(interface|iface)(!)\\s*(?:[A-Za-z_][A-Za-z0-9_]*\\s*)?(\\{)",
       "beginCaptures": {
         "1": { "name": "keyword.control.alex-xp.rust" },
         "2": { "name": "keyword.operator.macro.alex-xp.rust" },
@@ -20,7 +20,7 @@
     },
     {
       "name": "meta.macro.alex-xp.class.rust",
-      "begin": "\\b(class)(!)\\s*(\\{)",
+      "begin": "\\b(class|obj)(!)\\s*(?:[A-Za-z_][A-Za-z0-9_]*\\s*)?(\\{)",
       "beginCaptures": {
         "1": { "name": "keyword.control.alex-xp.rust" },
         "2": { "name": "keyword.operator.macro.alex-xp.rust" },
@@ -36,7 +36,7 @@
     },
     {
       "name": "keyword.control.alex-xp.rust",
-      "match": "\\b(interface|class|declare_immut_var|declare_mut_var|declare_const|declare_var|ownership_assign|copy_assign|unique_writable_lend|read_only_lend|deref_access|deref_mutate|scope_block|reassign_ownership|reassign_copy|delete_var|perform_op|print_value|drill_mut|drill_read|auto_let|auto_let_mut|auto_give|auto_set|auto_share|auto_edit|auto_own|auto_box|auto_fn)!"
+      "match": "\\b(interface|class|obj|iface|declare_immut_var|declare_mut_var|declare_const|declare_var|ownership_assign|copy_assign|unique_writable_lend|read_only_lend|deref_access|deref_mutate|scope_block|reassign_ownership|reassign_copy|delete_var|perform_op|print_value|drill_mut|drill_read|auto_let|auto_let_mut|auto_give|auto_set|auto_share|auto_edit|auto_own|auto_box|auto_fn|val|var|set|give|add|show|def|heap|s)!"
     },
     {
       "name": "storage.modifier.alex-xp.rust",
