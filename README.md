@@ -6,6 +6,8 @@ Think of it as spectacles: `interface!` / `class!` look like well-taught OOP; `d
 
 A weak LLM can stay inside this vocabulary (snippets in the editor extension help).
 
+The full guide is [docs/index.md](docs/index.md): setup, everyday macros, ownership, OOP, SOLID, and the 23 design patterns.
+
 ## New project
 
 Upstream is [github.com/taiocean1213/Alex-XP](https://github.com/taiocean1213/Alex-XP). From a new crate:
