@@ -1,0 +1,46 @@
+name: Wiki
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - README.md
+      - scripts/render_wiki_home.py
+      - .github/workflows/wiki.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    name: Publish Home from README
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Render Home.md
+        run: python3 scripts/render_wiki_home.py README.md "$RUNNER_TEMP/Home.md"
+      - name: Push wiki
+        env:
+          WIKI_URL: https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.wiki.git
+        run: |
+          set -euo pipefail
+          rm -rf wiki
+          git clone "$WIKI_URL" wiki
+          if git -C wiki rev-parse --verify HEAD >/dev/null 2>&1; then
+            branch="$(git -C wiki rev-parse --abbrev-ref HEAD)"
+          else
+            branch="master"
+            git -C wiki checkout -B master
+          fi
+          cp "$RUNNER_TEMP/Home.md" wiki/Home.md
+          git -C wiki add Home.md
+          if git -C wiki diff --cached --quiet; then
+            echo "Wiki Home is already current"
+            exit 0
+          fi
+          git -C wiki \
+            -c user.name="github-actions[bot]" \
+            -c user.email="41898282+github-actions[bot]@users.noreply.github.com" \
+            commit -m "Publish Home from README.md"
+          git -C wiki push origin "HEAD:${branch}"
