@@ -44,10 +44,15 @@ fn ownership_tree() {
         next: Option<Box<Node>>,
     }
 
-    give!(root = Node {
-        value: 0,
-        next: Some(heap!(Node { value: 1, next: None })),
-    });
+    give!(
+        root = Node {
+            value: 0,
+            next: Some(heap!(Node {
+                value: 1,
+                next: None
+            })),
+        }
+    );
     assert_eq!(root.next.unwrap().value, 1);
 }
 
@@ -597,11 +602,13 @@ fn pattern_chain() {
         }
     }
 
-    give!(chain = Limit::new(
-        s!("small"),
-        10,
-        Some(heap!(Limit::new(s!("big"), 100, None))),
-    ));
+    give!(
+        chain = Limit::new(
+            s!("small"),
+            10,
+            Some(heap!(Limit::new(s!("big"), 100, None))),
+        )
+    );
     assert_eq!(chain.handle(5), "small handled 5");
     assert_eq!(chain.handle(50), "big handled 50");
 }

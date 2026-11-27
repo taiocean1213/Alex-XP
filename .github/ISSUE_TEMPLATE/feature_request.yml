@@ -1,0 +1,25 @@
+name: Feature request
+description: A macro, guide page, or editor snippet that is missing
+title: "[feature] "
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: call
+    attributes:
+      label: The call you want to write
+      description: Show the source, not the expansion.
+    validations:
+      required: true
+  - type: textarea
+    id: rustc
+    attributes:
+      label: What rustc should still reject
+      description: Types, borrows, or shapes that must stay errors.
+    validations:
+      required: true
+  - type: textarea
+    id: why
+    attributes:
+      label: Why the current macros are not enough
+    validations:
+      required: true

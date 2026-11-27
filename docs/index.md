@@ -54,3 +54,5 @@ Behavioral
 - [Strategy](patterns/strategy.md)
 - [Template Method](patterns/template-method.md)
 - [Visitor](patterns/visitor.md)
+
+People changing the crate follow [CONTRIBUTING.md](../CONTRIBUTING.md).

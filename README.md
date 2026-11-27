@@ -1,5 +1,7 @@
 # Alex-XP
 
+[![CI](https://github.com/taiocean1213/Alex-XP/actions/workflows/ci.yml/badge.svg)](https://github.com/taiocean1213/Alex-XP/actions/workflows/ci.yml)
+
 A small set of Rust macros so you can write code with **named ownership** and **OOP-shaped types**, while rustc still checks the real program.
 
 Think of it as spectacles: `interface!` / `class!` look like well-taught OOP; `declare_mut_var!` / `unique_writable_lend!` name move vs copy vs lend. Method signatures still use `&self` / `&mut self`.
@@ -10,7 +12,7 @@ The full guide is [docs/index.md](docs/index.md): setup, everyday macros, owners
 
 ## New project
 
-Upstream is [github.com/taiocean1213/Alex-XP](https://github.com/taiocean1213/Alex-XP). From a new crate:
+From a new crate:
 
 ```sh
 cargo new hello-alex
@@ -22,10 +24,10 @@ cd hello-alex
 alex-xp = { git = "https://github.com/taiocean1213/Alex-XP" }
 ```
 
-That git dependency resolves once this library is on the default branch of that repo. Until then, depend on a local checkout:
+To change this repo, clone it and follow [CONTRIBUTING.md](CONTRIBUTING.md). A crate next to that clone can use a path dependency:
 
 ```toml
-alex-xp = { path = "C:/Users/ASUS/Downloads/Alex-XP/crates/alex-xp" }
+alex-xp = { path = "../Alex-XP/crates/alex-xp" }
 ```
 
 Write `src/main.rs`:
@@ -57,7 +59,7 @@ cargo run
 | --- | --- |
 | `val!(name = expr)` | Immutable binding, type inferred, source stays |
 | `var!(name = expr)` | Same, but mutable |
-| `add!(name, n)` | `name = name + n` — the name is written once |
+| `add!(name, n)` | `name += n` — the name is written once |
 | `set!(name = expr)` | Replace it, source stays |
 | `give!(name = expr)` | Take it (files, locks, anything not `Clone`) |
 | `s!("Ada")` | A `String` |
@@ -130,6 +132,10 @@ cargo test -p alex-xp
 ```
 
 `owned_conversion` returns an **owned** output from `&mut` input. There is no leaked `'static` helper in the crate.
+
+## Contributing
+
+Issues and pull requests are welcome. The license is MIT OR Apache-2.0. [CONTRIBUTING.md](CONTRIBUTING.md) has the test commands, the way to add a macro, and how snippets stay aligned with the crate.
 
 ## Editor
 

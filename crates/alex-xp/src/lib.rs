@@ -9,10 +9,10 @@
 //! `&mut self`, because a struct cannot infer those.
 
 mod auto;
-mod short;
-mod ownership;
-mod oop;
 mod drill;
+mod oop;
+mod ownership;
+mod short;
 
 #[doc(hidden)]
 pub use auto::{auto_dup, auto_own};
