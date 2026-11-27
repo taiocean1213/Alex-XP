@@ -8,7 +8,9 @@ Think of it as spectacles: `interface!` / `class!` look like well-taught OOP; `d
 
 A weak LLM can stay inside this vocabulary (snippets in the editor extension help).
 
-The full guide is [docs/index.md](docs/index.md): setup, everyday macros, ownership, OOP, SOLID, and the 23 design patterns.
+## Start here
+
+The [wiki](https://github.com/taiocean1213/Alex-XP/wiki) is the tour for a first visit. The [tutorial](docs/tutorial.md) is four steps in a crate of your own. The [examples](docs/examples.md) run from a clone of this repository. The [guide](docs/index.md) is the reference: everyday macros, ownership, OOP, SOLID, and the 23 design patterns.
 
 ## New project
 

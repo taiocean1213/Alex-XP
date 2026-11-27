@@ -62,9 +62,9 @@ Record user-visible changes under `Unreleased` in [CHANGELOG.md](CHANGELOG.md).
 
 ## Wiki
 
-The GitHub Wiki home page is published from [README.md](README.md). Edit that file. The Wiki tab is output: edits made in the wiki editor are overwritten on the next push to `main`.
+The GitHub Wiki is published from [docs/](docs/). A first visit starts at [docs/welcome.md](docs/welcome.md), continues in [docs/tutorial.md](docs/tutorial.md), and runs the programs in [docs/examples.md](docs/examples.md). Edit those files. The Wiki tab is output: edits made in the wiki editor are overwritten on the next push to `main`.
 
-GitHub does not create the wiki git repository until someone saves the first page in the browser. If publish fails with `repository not found`, sign in and save a page named Home at `https://github.com/taiocean1213/Alex-XP/wiki/_new`, then rerun the wiki workflow. Later publishes clone that repository and replace Home from the README.
+GitHub does not create the wiki git repository until someone saves the first page in the browser. If publish fails with `repository not found`, sign in and save a page named Home at `https://github.com/taiocean1213/Alex-XP/wiki/_new`, then rerun the wiki workflow. Later publishes replace the wiki pages from `docs/`.
 
 ## Issues
 

@@ -872,3 +872,65 @@ fn pattern_visitor() {
     assert_eq!(area(&circle), 9);
     assert_eq!(area(&square), 9);
 }
+
+#[test]
+fn tutorial_program() {
+    struct Ticket(i32);
+
+    obj!(Greeter {
+        who: String,
+        fn new(who: String) -> Self { Self { who } }
+        fn hello(&self) -> String { s!(self.who) }
+    });
+
+    iface!(Alarm {
+        fn ring(&self) -> String;
+    });
+
+    class! {
+        Bell : [Alarm {
+            fn ring(&self) -> String { s!("ding") }
+        }] {} {
+            fn new() -> Self { Self {} }
+        }
+    }
+
+    class! {
+        Siren : [Alarm {
+            fn ring(&self) -> String { s!("wail") }
+        }] {} {
+            fn new() -> Self { Self {} }
+        }
+    }
+
+    val!(person = Greeter::new(s!("Ada")));
+    assert_eq!(person.hello(), "Ada");
+    show!(person.hello());
+
+    var!(count = 1);
+    add!(count, 1);
+    assert_eq!(count, 2);
+    show!(count);
+    set!(count = 4);
+    assert_eq!(count, 4);
+    show!(count);
+
+    val!(label = s!("Ada"));
+    val!(again = label);
+    assert_eq!(label, "Ada");
+    assert_eq!(again, "Ada");
+    show!(label);
+    show!(again);
+
+    give!(ticket = Ticket(7));
+    assert_eq!(ticket.0, 7);
+    show!(ticket.0);
+
+    let bell = Bell::new();
+    let siren = Siren::new();
+    let alarms: Vec<&dyn Alarm> = vec![&bell, &siren];
+    assert_eq!(alarms[0].ring(), "ding");
+    assert_eq!(alarms[1].ring(), "wail");
+    show!(alarms[0].ring());
+    show!(alarms[1].ring());
+}

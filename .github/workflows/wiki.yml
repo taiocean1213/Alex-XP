@@ -4,8 +4,8 @@ on:
   push:
     branches: [main]
     paths:
-      - README.md
-      - scripts/render_wiki_home.py
+      - docs/**
+      - scripts/render_wiki.py
       - .github/workflows/wiki.yml
   workflow_dispatch:
 
@@ -14,12 +14,12 @@ permissions:
 
 jobs:
   publish:
-    name: Publish Home from README
+    name: Publish the docs wiki
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Render Home.md
-        run: python3 scripts/render_wiki_home.py README.md "$RUNNER_TEMP/Home.md"
+      - name: Render wiki pages
+        run: python3 scripts/render_wiki.py . "$RUNNER_TEMP/wiki-out"
       - name: Push wiki
         env:
           WIKI_URL: https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.wiki.git
@@ -37,14 +37,15 @@ jobs:
             branch="master"
             git -C wiki checkout -B master
           fi
-          cp "$RUNNER_TEMP/Home.md" wiki/Home.md
-          git -C wiki add Home.md
+          find wiki -maxdepth 1 -name '*.md' -delete
+          cp "$RUNNER_TEMP/wiki-out/"*.md wiki/
+          git -C wiki add -A
           if git -C wiki diff --cached --quiet; then
-            echo "Wiki Home is already current"
+            echo "Wiki pages are already current"
             exit 0
           fi
           git -C wiki \
             -c user.name="github-actions[bot]" \
             -c user.email="41898282+github-actions[bot]@users.noreply.github.com" \
-            commit -m "Publish Home from README.md"
+            commit -m "Publish the tutorial wiki from docs"
           git -C wiki push origin "HEAD:${branch}"

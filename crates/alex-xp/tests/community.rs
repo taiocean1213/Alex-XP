@@ -24,15 +24,22 @@ fn public_repo_has_contributor_surface() {
     assert!(contributing.contains("cargo test --workspace"));
     assert!(contributing.contains("editors/vscode"));
     assert!(contributing.contains("TRYBUILD"));
-    assert!(contributing.contains("published from [README.md](README.md)"));
+    assert!(contributing.contains("published from [docs/](docs/)"));
     assert!(contributing.contains("The Wiki tab is output"));
+    assert!(repo_file("docs/welcome.md").contains("[Tutorial](tutorial.md)"));
+    assert!(repo_file("docs/tutorial.md").contains("ding"));
+    assert!(repo_file("docs/examples.md").contains("cargo run -p alex-xp --example auto_tour"));
 
     let wiki = repo_file(".github/workflows/wiki.yml");
-    assert!(wiki.contains("README.md"));
-    assert!(wiki.contains("scripts/render_wiki_home.py"));
+    assert!(wiki.contains("docs/**"));
+    assert!(wiki.contains("scripts/render_wiki.py"));
     assert!(wiki.contains(".wiki.git"));
-    assert!(wiki.contains("Publish Home from README.md"));
+    assert!(wiki.contains("Publish the tutorial wiki from docs"));
     assert!(wiki.contains("wiki/_new"));
+    let publisher = repo_file("scripts/render_wiki.py");
+    assert!(publisher.contains("(\"docs/welcome.md\", \"Home\""));
+    assert!(publisher.contains("(\"docs/tutorial.md\", \"Tutorial\""));
+    assert!(publisher.contains("(\"docs/examples.md\", \"Examples\""));
 
     let ci = repo_file(".github/workflows/ci.yml");
     assert!(ci.contains("cargo fmt --all -- --check"));

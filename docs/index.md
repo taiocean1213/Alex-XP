@@ -2,6 +2,8 @@
 
 Alex-XP is a set of Rust macros. You still write `.rs` files. rustc checks the program after the macros expand.
 
+New here: the [welcome](welcome.md) page is one program, the [tutorial](tutorial.md) is the next three ideas, and the [examples](examples.md) are five programs you can run from a clone.
+
 ## Limits
 
 These stay written out, because the macros cannot invent them:
