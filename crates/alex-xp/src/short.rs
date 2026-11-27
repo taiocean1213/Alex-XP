@@ -43,11 +43,11 @@ macro_rules! give {
     };
 }
 
-/// `add!(count, 1)` is `count = count + 1`. The name is written once.
+/// `add!(count, 1)` is `count += 1`. The name is written once.
 #[macro_export]
 macro_rules! add {
     ($name:ident, $expr:expr) => {
-        $name = $name + $expr;
+        $name += $expr;
     };
     ($($other:tt)*) => {
         compile_error!("add!(name, amount)");

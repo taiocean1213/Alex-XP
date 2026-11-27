@@ -4,7 +4,10 @@ version = "0.1.0"
 edition = "2021"
 description = "OOP-flavored ownership macros over ordinary Rust"
 license = "MIT OR Apache-2.0"
+repository = "https://github.com/taiocean1213/Alex-XP"
 readme = "../../README.md"
+keywords = ["macros", "ownership", "oop"]
+categories = ["rust-patterns", "development-tools"]
 
 [dev-dependencies]
 trybuild = "1"

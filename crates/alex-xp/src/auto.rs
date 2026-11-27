@@ -94,9 +94,7 @@ macro_rules! auto_edit {
         $body
     }};
     ($($other:tt)*) => {
-        compile_error!(
-            "Invalid syntax for auto_edit!. Expected: name = place { code }"
-        );
+        compile_error!("Invalid syntax for auto_edit!. Expected: name = place { code }");
     };
 }
 

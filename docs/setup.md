@@ -1,6 +1,6 @@
 # Setup
 
-Create a normal Rust project and depend on this checkout. The git URL `https://github.com/taiocean1213/Alex-XP` is the upstream. It only builds once this crate is on that repo's default branch. Until then, use a path:
+Create a normal Rust project and depend on the public repo:
 
 ```sh
 cargo new hello-alex
@@ -9,8 +9,10 @@ cd hello-alex
 
 ```toml
 [dependencies]
-alex-xp = { path = "C:/Users/ASUS/Downloads/Alex-XP/crates/alex-xp" }
+alex-xp = { git = "https://github.com/taiocean1213/Alex-XP" }
 ```
+
+A crate next to a local clone can use `path = "../Alex-XP/crates/alex-xp"` instead. People changing Alex-XP follow [CONTRIBUTING.md](../CONTRIBUTING.md).
 
 `src/main.rs`:
 

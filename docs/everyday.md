@@ -28,7 +28,7 @@ fn main() {
 | --- | --- |
 | `val!(name = expr)` | Immutable binding. Duplicates `expr` so the source stays. |
 | `var!(name = expr)` | Same, and the binding is mutable. |
-| `add!(name, n)` | `name = name + n`. The name is written once. |
+| `add!(name, n)` | `name += n`. The name is written once. |
 | `set!(name = expr)` | Replace a mutable binding with a duplicate of `expr`. |
 | `give!(name = expr)` | Move `expr`. Use this when the type is not `Clone`. |
 | `s!("Ada")` | A `String`. `s!(other)` stringifies `other`. |

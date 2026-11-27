@@ -38,10 +38,15 @@ pub fn run() {
     assert_eq!(person.hello(), "Ada");
     show!(person.hello());
 
-    give!(root = Node {
-        value: 0,
-        next: Some(heap!(Node { value: 1, next: None })),
-    });
+    give!(
+        root = Node {
+            value: 0,
+            next: Some(heap!(Node {
+                value: 1,
+                next: None
+            })),
+        }
+    );
     assert_eq!(root.next.as_ref().unwrap().value, 1);
     show!(root.next.as_ref().unwrap().value);
 

@@ -56,12 +56,12 @@ fn modify_lowest_value(deepest: &mut Option<Node>, new_value: i32) {
 }
 
 fn get_lowest_value(deepest: &Option<Node>) -> Option<i32> {
-    deepest.as_ref().and_then(|node| {
-        match drill_read!(&node.data, NodeData::Prev, data) {
+    deepest
+        .as_ref()
+        .and_then(|node| match drill_read!(&node.data, NodeData::Prev, data) {
             NodeData::Value(val) => Some(*val),
             _ => None,
-        }
-    })
+        })
 }
 
 pub fn run() {

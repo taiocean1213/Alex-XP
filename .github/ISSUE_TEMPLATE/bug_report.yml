@@ -1,0 +1,32 @@
+name: Bug report
+description: A macro, example, or documented sample does the wrong thing
+title: "[bug] "
+labels: ["bug"]
+body:
+  - type: textarea
+    id: call
+    attributes:
+      label: Macro call
+      description: The smallest `.rs` fragment that shows the problem, including `use alex_xp::*;`.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What you expected
+    validations:
+      required: true
+  - type: textarea
+    id: error
+    attributes:
+      label: What happened
+      description: Paste the rustc or compile_error output.
+    validations:
+      required: true
+  - type: input
+    id: rustc
+    attributes:
+      label: rustc --version
+      placeholder: rustc 1.97.1
+    validations:
+      required: true
