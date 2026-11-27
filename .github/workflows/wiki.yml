@@ -25,6 +25,10 @@ jobs:
           WIKI_URL: https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.wiki.git
         run: |
           set -euo pipefail
+          if ! git ls-remote "$WIKI_URL" HEAD >/dev/null 2>&1; then
+            echo "::error::GitHub has not created ${{ github.repository }}.wiki.git yet. The wiki feature can be on, and clone still returns 'repository not found', until the first page is saved in the browser. There is no API for that page. Sign in, open https://github.com/${{ github.repository }}/wiki/_new, save a page named Home, then rerun this workflow."
+            exit 1
+          fi
           rm -rf wiki
           git clone "$WIKI_URL" wiki
           if git -C wiki rev-parse --verify HEAD >/dev/null 2>&1; then

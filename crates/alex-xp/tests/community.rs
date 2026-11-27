@@ -32,6 +32,7 @@ fn public_repo_has_contributor_surface() {
     assert!(wiki.contains("scripts/render_wiki_home.py"));
     assert!(wiki.contains(".wiki.git"));
     assert!(wiki.contains("Publish Home from README.md"));
+    assert!(wiki.contains("wiki/_new"));
 
     let ci = repo_file(".github/workflows/ci.yml");
     assert!(ci.contains("cargo fmt --all -- --check"));

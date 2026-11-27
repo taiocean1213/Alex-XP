@@ -64,6 +64,8 @@ Record user-visible changes under `Unreleased` in [CHANGELOG.md](CHANGELOG.md).
 
 The GitHub Wiki home page is published from [README.md](README.md). Edit that file. The Wiki tab is output: edits made in the wiki editor are overwritten on the next push to `main`.
 
+GitHub does not create the wiki git repository until someone saves the first page in the browser. If publish fails with `repository not found`, sign in and save a page named Home at `https://github.com/taiocean1213/Alex-XP/wiki/_new`, then rerun the wiki workflow. Later publishes clone that repository and replace Home from the README.
+
 ## Issues
 
 Use the bug or feature template. A compile error report needs the macro call, `rustc --version`, and the rustc output. Feature ideas should show the call you want to write and what rustc should still reject.
