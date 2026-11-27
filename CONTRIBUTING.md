@@ -60,6 +60,10 @@ Keep a pull request to one behavior when you can. Say what a caller can write af
 
 Record user-visible changes under `Unreleased` in [CHANGELOG.md](CHANGELOG.md).
 
+## Wiki
+
+The GitHub Wiki home page is published from [README.md](README.md). Edit that file. The Wiki tab is output: edits made in the wiki editor are overwritten on the next push to `main`.
+
 ## Issues
 
 Use the bug or feature template. A compile error report needs the macro call, `rustc --version`, and the rustc output. Feature ideas should show the call you want to write and what rustc should still reject.

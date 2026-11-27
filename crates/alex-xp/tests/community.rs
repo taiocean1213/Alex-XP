@@ -24,6 +24,14 @@ fn public_repo_has_contributor_surface() {
     assert!(contributing.contains("cargo test --workspace"));
     assert!(contributing.contains("editors/vscode"));
     assert!(contributing.contains("TRYBUILD"));
+    assert!(contributing.contains("published from [README.md](README.md)"));
+    assert!(contributing.contains("The Wiki tab is output"));
+
+    let wiki = repo_file(".github/workflows/wiki.yml");
+    assert!(wiki.contains("README.md"));
+    assert!(wiki.contains("scripts/render_wiki_home.py"));
+    assert!(wiki.contains(".wiki.git"));
+    assert!(wiki.contains("Publish Home from README.md"));
 
     let ci = repo_file(".github/workflows/ci.yml");
     assert!(ci.contains("cargo fmt --all -- --check"));
